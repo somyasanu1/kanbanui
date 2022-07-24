@@ -5,7 +5,7 @@ function Task() {
   const [taskDetail ,setTaskDetail] = useState([]);
 
   const fetchTask = async () =>{
-    let res = await fetch("http://127.0.0.1:8000/api/task/4")
+    let res = await fetch("https://sanukanbanbackend.herokuapp.com/api/task/4")
     res= await res.json();
     setTaskDetail(res)
 }

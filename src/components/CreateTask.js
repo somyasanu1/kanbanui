@@ -96,7 +96,7 @@ function CreateTask({editTask, createTask, onClose, task, onSuccess}) {
     }
     let msg = isFormValid(data);
     if(msg === null){
-    let res = await fetch("http://127.0.0.1:8000/api/task/add",
+    let res = await fetch("https://sanukanbanbackend.herokuapp.com/task/add",
     {
       method: 'POST',
       headers: {
@@ -125,7 +125,7 @@ const saveTask = async () =>{
   if(msg === null){
     console.log(data);
   let id = task.id;
-  let res = await fetch(`http://127.0.0.1:8000/api/task/${id}`,
+  let res = await fetch(`https://sanukanbanbackend.herokuapp.com/api/task/${id}`,
   {
     method: 'PUT',
     headers: {
@@ -152,7 +152,7 @@ const onSave = () => {
 }
 
 const getAllUsers = async () =>{
-  let res = await fetch("http://127.0.0.1:8000/api_user/user/")
+  let res = await fetch("https://sanukanbanbackend.herokuapp.com/api_user/user/")
       res= await res.json()
       setUsers(res);
 }
