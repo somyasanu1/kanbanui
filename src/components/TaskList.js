@@ -2,6 +2,11 @@ import { Badge, Grid, GridItem, Text } from '@chakra-ui/react';
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import React from 'react';
 
+const deleteTask = async ( index) =>{
+  let res = await fetch(`https://sanukanbanbackend.herokuapp.com/api/task/del/${index}`,
+  {
+    method: 'DELETE',})
+}
 
 function TaskList({ status, taskList, onClick }) {
   return (

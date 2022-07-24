@@ -20,7 +20,7 @@ import React, { useEffect, useState } from 'react'
 
 
 
-function CreateTask({editTask, createTask, onClose, task, onSuccess}) {
+function CreateTask({editTask, createTask, onClose, task, fetchTasks}) {
   let [description, setDescription] = useState('')
   let [summary, setSummary] = useState('')
   let [priority, setPriority] = useState('P1')
@@ -106,6 +106,7 @@ function CreateTask({editTask, createTask, onClose, task, onSuccess}) {
       body: JSON.stringify(data)})
     res= await res.json()
     onClose();
+    fetchTasks();
     }
     else{
       setErrorMsg(msg);
@@ -123,7 +124,6 @@ const saveTask = async () =>{
   }
   let msg = isFormValid(data);
   if(msg === null){
-    console.log(data);
   let id = task.id;
   let res = await fetch(`https://sanukanbanbackend.herokuapp.com/api/task/${id}`,
   {
@@ -135,6 +135,7 @@ const saveTask = async () =>{
     body: JSON.stringify(data)})
   res= await res.json()
   onClose();
+  fetchTasks();
   }else{
     setErrorMsg(msg);
   }
@@ -148,7 +149,7 @@ const onSave = () => {
   else{
     addTask();
   }
-  onSuccess();
+  
 }
 
 const getAllUsers = async () =>{

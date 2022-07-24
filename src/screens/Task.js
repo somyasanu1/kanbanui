@@ -9,6 +9,7 @@ function Task() {
     res= await res.json();
     setTaskDetail(res)
 }
+
   useEffect(() => {
     fetchTask();
   }, [])
