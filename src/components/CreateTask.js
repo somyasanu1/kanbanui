@@ -96,7 +96,7 @@ function CreateTask({editTask, createTask, onClose, task, onSuccess}) {
     }
     let msg = isFormValid(data);
     if(msg === null){
-    let res = await fetch("https://sanukanbanbackend.herokuapp.com/task/add",
+    let res = await fetch("https://sanukanbanbackend.herokuapp.com/api/task/add",
     {
       method: 'POST',
       headers: {
