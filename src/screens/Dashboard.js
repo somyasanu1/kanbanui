@@ -1,4 +1,4 @@
-import { Box, Button, Grid, GridItem, Text, Toast, useToast } from '@chakra-ui/react'
+import { Box, Button, Grid, GridItem, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import CreateTask from '../components/CreateTask'
 import TaskList from '../components/TaskList'
@@ -11,7 +11,6 @@ function Dashboard() {
     
     const [count, setCount] = useState({"Not Started": 0, "In Progress": 0, "Completed": 0})
     const status = ["Not Started", "In Progress", "Completed"]
-    const toast = useToast()
    
     const fetchTasks = async () =>{
         var count1 =0 , count2 =0 ,count3 =0
@@ -26,18 +25,9 @@ function Dashboard() {
         setCount(counts)
         setTasksList(res)
     }
-
-
     const closeModal = () => {
         setCreateTask(false);
         setEditTask(false);
-        toast({
-          title: 'Task saved successfully',
-          description: "We've created your task for you.",
-          status: 'success',
-          duration: 2000,
-          isClosable: true,
-        })
     }
     const onEdit = (i) => {
         setEditTask(!editTask);

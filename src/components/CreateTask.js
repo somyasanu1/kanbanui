@@ -15,7 +15,8 @@ import { Box,
   ModalCloseButton,
   ModalBody, 
   Grid,
-  GridItem} from '@chakra-ui/react'
+  GridItem,
+  useToast} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 
 
@@ -29,6 +30,7 @@ function CreateTask({editTask, createTask, onClose, task, fetchTasks}) {
   const [assignee, setAssignee] = useState("")
   const [status, setStatus] = useState("Not Started")
   const [errorMsg, setErrorMsg] = useState(null)
+  const toast = useToast()
 
   const Priority = ["P1", "P2", "P3", "P4"]
   const Status = ["Not Started", "In Progress", "Completed"]
@@ -107,10 +109,22 @@ function CreateTask({editTask, createTask, onClose, task, fetchTasks}) {
     res= await res.json()
     onClose();
     fetchTasks();
+    Toast( true,'Task added successfully',"We've added your task for you.")
     }
     else{
       setErrorMsg(msg);
+      Toast( false,"Some Error Occured",msg)
     }
+}
+
+const Toast = (isError, msg, desc) =>{
+  toast({
+      title: msg,
+      description: desc,
+      status: isError ? 'success': 'error' ,
+      duration: 2000,
+      isClosable: true,
+    })
 }
 
 const saveTask = async () =>{
@@ -136,8 +150,10 @@ const saveTask = async () =>{
   res= await res.json()
   onClose();
   fetchTasks();
+  Toast( true,'Task saved successfully',"We've edited your task for you.")
   }else{
     setErrorMsg(msg);
+    Toast( false,"Some Error Occured",msg)
   }
 }
 
@@ -234,7 +250,7 @@ useEffect(() =>{
                   </Button>
                   <Button colorScheme='blue' onClick={onSave}>Save</Button>
               </ModalFooter>
-              {errorMsg!== null && <Text ml={"5"} mb="5" align={"left"} color={"red"}>{ errorMsg}</Text>}
+              {/* {errorMsg!== null && <Text ml={"5"} mb="5" align={"left"} color={"red"}>{ errorMsg}</Text>} */}
             </ModalContent>
           </Modal>
       )
