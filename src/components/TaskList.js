@@ -25,7 +25,7 @@ function TaskList({ status, taskList, onClick }) {
                 <Text fontSize={'16px'} fontWeight="semibold" ml={"7px"} mb={3}>
                   {task.summary}
                 </Text>
-                <Text fontSize="14px" mx={"7px"} mb={3}>
+                <Text noOfLines={2} fontSize="14px" mx={"7px"} mb={3}>
                   {task.description}
                 </Text>
                 <Grid templateColumns="repeat(2,1fr)" gap={3}>
