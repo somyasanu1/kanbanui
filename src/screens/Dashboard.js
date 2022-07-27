@@ -15,7 +15,11 @@ function Dashboard() {
     const fetchTasks = async () =>{
         var count1 =0 , count2 =0 ,count3 =0
         let res = await fetch("https://sanukanbanbackend.herokuapp.com/api/tasks/")
-        res= await res.json()
+        res= await res.json();
+        res.sort((a,b) =>{
+            if (a.priority <b.priority){return -1;}
+            else return 1;
+        })
         for(const task in res){
             if(res[task].status ==="Not Started") count1++;
             else if(res[task].status === "In Progress") count2++;
